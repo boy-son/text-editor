@@ -5,7 +5,7 @@ const butInstall = document.getElementById('buttonInstall');
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     window.deferredPrompt = event;
-    butInstall.hidden = false;
+    butInstall.classList.toggle("hidden", false);
 });
 
 // TODO: Implement a click event handler on the `butInstall` element
@@ -15,12 +15,6 @@ butInstall.addEventListener('click', async () => {
         return;
     }
     promptEvent.prompt();
-    // const result = await promptEvent.userChoice;
-    // if (result.outcome === 'accepted') {
-    //     console.log('User accepted the prompt');
-    // } else {
-    //     console.log('User dismissed the prompt');
-    // }
     window.deferredPrompt = null;
     butInstall.hidden = true;
 });

@@ -16,10 +16,12 @@ module.exports = () => {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
+        filename: 'index.html',
         title: 'JATE',
       }),
       new InjectManifest({
@@ -30,8 +32,8 @@ module.exports = () => {
         name: 'JATE',
         short_name: 'JATE',
         description: 'JATE is a simple journaling app',
-        background_color: '#ffffff',
-        theme_color: '#ffffff',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
         start_url: '/',
         public_path: '/',
         fingerprints: false,
