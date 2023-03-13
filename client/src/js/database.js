@@ -20,18 +20,20 @@ const store = txt.objectStore('jate');
 const reqPut = store.add(content);
 const resPut = await reqPut;
 console.log("data added: ", resPut);
-return resPut;
 };
 
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
-const jateDB = await openDB('jate', 1);
-const txt = jateDB.transaction('jate', 'readonly');
-const store = txt.objectStore('jate');
-const reqGet = store.getAll();
-const resGet = await reqGet;
-console.log("data retrieved: ", resGet);
-return resGet;
+  try {
+    const jateDB = await openDB('jate', 1);
+    const tx = jateDB.transaction('jate', 'readonly');
+    const store = tx.objectStore('jate');
+    const reqGet = store.get(1);
+    const resGet = await reqGet;
+    console.log("data retrieved: ", resGet);
+    return resGet?.value;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
 };
-
-initdb();
